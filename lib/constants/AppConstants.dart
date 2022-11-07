@@ -1,0 +1,1 @@
+final String PREF_LOGIN_REQUEST = "loginRequest";
