@@ -7,16 +7,4 @@ abstract class BaseViewModel extends ChangeNotifier {
   }
 
   void init();
-
-  void showLoading(){
-    if (!EasyLoading.isShow) {
-      EasyLoading.show();
-    }
-  }
-
-  void hideLoading(){
-    if (EasyLoading.isShow){
-      EasyLoading.dismiss();
-    }
-  }
 }
