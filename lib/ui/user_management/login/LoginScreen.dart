@@ -33,7 +33,7 @@ class LoginScreen extends StatelessWidget {
 
               50.toVerticalSizedBox,
               'Log In'.toButton(() {
-                appRouter.push(SignupScreenRoute());
+                appRouter.pushAndPopUntil(MainScreenRoute(), predicate: (f) => false);
               }, width: double.infinity),
 
               20.toVerticalSizedBox,
@@ -46,7 +46,7 @@ class LoginScreen extends StatelessWidget {
 
               50.toVerticalSizedBox,
               'Create New Account'.toButton(() {
-
+                appRouter.push(SignupScreenRoute());
               }, width: double.infinity, color: AppColors.green),
               20.toVerticalSizedBox,
             ],

@@ -4,9 +4,9 @@ import 'package:giftr/extension/StringExtension.dart';
 
 import '../main.dart';
 
-showMyAlertDialog(BuildContext context, String title, String message) {
+showMyAlertDialog(String title, String message) {
   showDialog(
-      context: context,
+      context: appRouter.root.navigatorKey.currentContext!,
       builder: (context) {
         return Dialog(
           shape: RoundedRectangleBorder(
