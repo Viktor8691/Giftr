@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 extension WidgetExtension on Widget {
 
@@ -15,5 +16,36 @@ extension WidgetExtension on Widget {
 
   Column toColumn() => Column(
     children: [this],
+  );
+
+  Container phoneNumberInput({PhoneNumber? phoneNumber, required Function(bool) onInputValidated, required Function(PhoneNumber) onInputChanged}) => InternationalPhoneNumberInput(
+    initialValue: phoneNumber ?? PhoneNumber(isoCode: "CM"),
+    onInputValidated: (value) => onInputValidated(value),
+    onInputChanged: (value) => onInputChanged(value),
+    selectorConfig: const SelectorConfig(
+      selectorType: PhoneInputSelectorType.DIALOG,
+    ),
+    inputDecoration: const InputDecoration.collapsed(hintText: "Phone number"),
+  ).toOutlineContainer();
+
+  Center toCenter() => Center(child: this,);
+  Flexible toFlexible() => Flexible(child: this);
+}
+
+extension ListWidgetExtension on List<Widget?> {
+  Row toRow({MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start
+  }) => Row(
+    mainAxisAlignment: mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment,
+    children: this as List<Widget>,
+  );
+
+  Column toColumn({MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start
+  }) => Column(
+    mainAxisAlignment: mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment,
+    children: this as List<Widget>,
   );
 }

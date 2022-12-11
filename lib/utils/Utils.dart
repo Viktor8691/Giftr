@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:giftr/extension/NumExtension.dart';
 import 'package:giftr/extension/StringExtension.dart';
+import 'package:intl/intl.dart';
 
 import '../main.dart';
 
+String getTime(String time){
+  final timeStamp = int.parse(time) * 1000;
+  final dt = DateTime.fromMillisecondsSinceEpoch(timeStamp);
+  return DateFormat('MM/dd/yyyy, h:mm a').format(dt);
+}
 showMyAlertDialog(String title, String message) {
   showDialog(
       context: appRouter.root.navigatorKey.currentContext!,

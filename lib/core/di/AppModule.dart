@@ -1,11 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class AppModule {
+
   @lazySingleton
-  Client get httpClient => Client();
+  Dio get dio => Dio();
 
   @preResolve
   Future<SharedPreferences> get storage async => await SharedPreferences.getInstance();

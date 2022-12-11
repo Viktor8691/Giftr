@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:giftr/core/data/network/module/auth/LoginRes.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,12 +10,28 @@ import 'ISessionHelper.dart';
 @Injectable(as: ISessionHelper)
 class SessionHelper extends ISessionHelper {
 
-  final SharedPreferences storage;
-  SessionHelper(this.storage) : super();
+  final SharedPreferences _storage;
+  SessionHelper(this._storage) : super();
+  
+  @override
+  Future<User?> get user async {
+    final strUser = _storage.getString(PREF_SESSION);
+    if (strUser != null){
+      final jsonUser = jsonDecode(strUser) as Map<String, dynamic>;
+      return User.fromJson(jsonUser);
+    }
+  }
+  
+  @override
+  void clearSession() {
+    _storage.clear();
+  }
 
   @override
-  void clearSession() {}
+  bool isUserLoggedIn() => _storage.containsKey(PREF_SESSION);
 
   @override
-  bool isUserLoggedIn() => storage.containsKey(PREF_LOGIN_REQUEST);
+  void saveUser(User user) {
+    _storage.setString(PREF_SESSION, jsonEncode(user.toJson()));
+  }
 }
