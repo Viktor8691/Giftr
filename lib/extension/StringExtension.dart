@@ -80,8 +80,8 @@ extension StringExtension on String {
       fontSize: 16.0
   );
 
-  ClipRRect toNetworkImage({double? width, double? height}) => ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(5)),
+  ClipRRect toNetworkImage({double? width, double? height, double borderRadius = 5}) => ClipRRect(
+      borderRadius: BorderRadius.all(Radius.circular(borderRadius)),
       child: CachedNetworkImage(
         imageUrl: this,
         fit: BoxFit.cover, width: width, height: height,

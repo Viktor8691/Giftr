@@ -8,7 +8,7 @@ import 'package:giftr/extension/WidgetExtension.dart';
 import '../../../core/data/network/module/customer/gift/GetSentGiftRes.dart';
 import '../../../utils/Utils.dart';
 
-Widget GiftItem(Gift item) => Container(
+Widget GiftItem(Gift item, Function sendAgain) => Container(
   padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
   decoration: BoxDecoration(
     border: Border(bottom: BorderSide(width: 1, color: Colors.black12)),
@@ -37,7 +37,7 @@ Widget GiftItem(Gift item) => Container(
         ].toColumn(),
 
         Spacer(),
-        [20.toVerticalSizedBox, 'Send Again'.toButton(() {}, height: 40)].toColumn()
+        [20.toVerticalSizedBox, 'Send Again'.toButton(sendAgain, height: 40)].toColumn()
       ].toRow(),
       10.toVerticalSizedBox
     ],

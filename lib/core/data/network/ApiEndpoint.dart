@@ -9,4 +9,6 @@ class ApiEndpoint {
   static const String getSentGifts = 'getSentGifts';
   static const String getReceivedGifts = 'getReceivedGifts';
   static const String getNotifications = 'getNotifications';
+  static const String deleteNotification = 'deleteNotification';
+  static const String uploadProfilePicture = 'uploadProfilePicture';
 }

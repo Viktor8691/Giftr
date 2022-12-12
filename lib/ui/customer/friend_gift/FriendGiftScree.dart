@@ -27,7 +27,9 @@ class FriendGiftScreen extends StatelessWidget {
                 shrinkWrap: false,
                 itemCount: viewModel.gifts.length,
                 itemBuilder: (context, index) {
-                  return GiftItem(viewModel.gifts[index]);
+                  return GiftItem(viewModel.gifts[index], () {
+                    print('send again ==> $index');
+                  });
                 }
             );
           },

@@ -35,7 +35,9 @@ class HomeScreen extends StatelessWidget {
                   toAnimate: false,
                   badgeContent: Text(viewModel.notifications.length.toString(), style: TextStyle(color: Colors.white),),
                   child: Icon(Icons.notifications),)),
-                Icon(Icons.account_circle_outlined, size: 40,)
+                IconButton(onPressed: () {
+                  appRouter.push(ProfileScreenRoute());
+                }, icon: Icon(Icons.account_circle_outlined, size: 40))
               ],
             ),
             body: MasonryGridView.count(

@@ -18,6 +18,16 @@ class ApiHelper {
   final ISessionHelper _sessionHelper = getIt<ISessionHelper>();
   final timeout = 30;
 
+  Future<Either<Failure, Response>> multipartPost(String endPoint , Map<String, dynamic> body, String filePath) async =>
+      await apiRequest(() async {
+        body.addAll({'file' : await MultipartFile.fromFile(filePath)});
+        final _res = await dio.post(
+          baseUrl + endPoint,
+          data: FormData.fromMap(body),
+        );
+        return _res;
+      });
+
   Future<Either<Failure, Response>> post(String endPoint , Map<String, dynamic> body) async =>
       await apiRequest(() async {
         final _res = await dio.post(

@@ -37,4 +37,10 @@ class HomeViewModel extends BaseViewModel {
     notifications.addAll(data);
     notifyListeners();
   }
+
+  void reloadNotifications(List<Notification> data){
+    notifications.clear();
+    notifications.addAll(data);
+    notifyListeners();
+  }
 }

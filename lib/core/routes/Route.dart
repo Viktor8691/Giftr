@@ -9,6 +9,7 @@ import '../../ui/customer/home/product_detail/ProductDetailScreen.dart';
 import '../../ui/customer/main/CustomerMainScreen.dart';
 import '../../ui/customer/notification/CustomerNotiScreen.dart';
 import '../../ui/merchant/main/MerchantMainScreen.dart';
+import '../../ui/user_management/profile/ProfileScreen.dart';
 
 
 @CupertinoAutoRouter(
@@ -22,6 +23,7 @@ import '../../ui/merchant/main/MerchantMainScreen.dart';
     CupertinoRoute(page: ContactListScreen),
     CupertinoRoute(page: MerchantMainScreen),
     CupertinoRoute(page: CustomerNotiScreen),
+    CupertinoRoute(page: ProfileScreen),
   ]
 )
 class $MyRouter{}

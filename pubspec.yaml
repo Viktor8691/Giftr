@@ -36,6 +36,9 @@ dependencies:
   flutter_contacts: ^1.1.5+1
   kt_dart: ^0.10.0
   badges: ^2.0.3
+  flutter_slidable: ^2.0.0
+  font_awesome_flutter: ^10.3.0
+  image_picker: ^0.8.6
 
 dev_dependencies:
   flutter_test:

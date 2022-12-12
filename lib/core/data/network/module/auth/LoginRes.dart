@@ -24,7 +24,7 @@ class LoginResData{
 
 @JsonSerializable()
 class User {
-  String id, name, email, password, phone_no, status, type, otp_verify;
+  String id, name, email, password, phone_no, status, type, otp_verify, avatar;
 
   User(
       this.id,
@@ -34,7 +34,8 @@ class User {
       this.phone_no,
       this.status,
       this.type,
-      this.otp_verify);
+      this.otp_verify,
+      this.avatar);
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
   Map<String, dynamic> toJson() => _$UserToJson(this);
