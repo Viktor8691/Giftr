@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "913088851247",
+    "project_id": "giftr-703d2",
+    "storage_bucket": "giftr-703d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913088851247:android:9b7415fff12f676b17c5da",
+        "android_client_info": {
+          "package_name": "com.sts.giftr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913088851247-uj6jc38ovgphqorec6e2ira3vc4elqr5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sts.giftr",
+            "certificate_hash": "f4d369df2c6a66ae15c695a25f602e86c32d6a39"
+          }
+        },
+        {
+          "client_id": "913088851247-kh6lmho0fplqg1dbcoc7uqko5r3iu9qa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLLvUiPKD6I6Fw_87dy6AcvIp_LDcPMAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913088851247-kh6lmho0fplqg1dbcoc7uqko5r3iu9qa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

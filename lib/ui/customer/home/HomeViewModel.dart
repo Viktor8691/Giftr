@@ -1,7 +1,5 @@
 import 'package:giftr/base/BaseViewModel.dart';
 import 'package:giftr/core/data/network/module/customer/product/GetProductReq.dart';
-import 'package:giftr/extension/StringExtension.dart';
-import 'package:giftr/utils/Utils.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../core/data/network/module/customer/product/GetProductRes.dart';

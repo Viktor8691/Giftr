@@ -11,4 +11,5 @@ class ApiEndpoint {
   static const String getNotifications = 'getNotifications';
   static const String deleteNotification = 'deleteNotification';
   static const String uploadProfilePicture = 'uploadProfilePicture';
+  static const String updateToken = 'updateToken';
 }

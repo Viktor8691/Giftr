@@ -8,6 +8,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:giftr/main.dart';
 import 'package:provider/provider.dart';
 
+import '../../../core/data/network/module/notification/GetCustomerNotiRes.dart' as noti;
 import '../../../core/routes/Route.gr.dart';
 import 'HomeViewModel.dart';
 import 'ProductItem.dart';
@@ -28,7 +29,13 @@ class HomeScreen extends StatelessWidget {
               title: 'Search'.toSearchBar(),
               actions: [
                 IconButton(onPressed: () {
-                  appRouter.push(CustomerNotiScreenRoute(data: viewModel.notifications));
+                  appRouter.push(CustomerNotiScreenRoute(data: viewModel.notifications)).then((value) {
+                    final notifications = value as List<noti.Notification>;
+                    print('aaaa ===> ${notifications.length}');
+                    if (notifications.isNotEmpty){
+                      viewModel.reloadNotifications(notifications);
+                    }
+                  });
                 }, icon: Badge(
                   elevation: 0,
                   showBadge: viewModel.notifications.isNotEmpty,

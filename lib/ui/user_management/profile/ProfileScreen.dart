@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
               'Update Profile'.toButton(() {}, width: 150),
 
               50.toVerticalSizedBox,
-              'Logout'.toTextButton(() {})
+              'Logout'.toTextButton(() {viewModel.logout();})
             ].toColumn(crossAxisAlignment: CrossAxisAlignment.center);
           },
         ),

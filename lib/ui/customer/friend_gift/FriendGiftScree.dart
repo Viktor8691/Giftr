@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:giftr/core/data/network/module/customer/gift/GetSentGiftRes.dart';
+import 'package:giftr/extension/NumExtension.dart';
 import 'package:giftr/extension/StringExtension.dart';
 import 'package:giftr/ui/customer/friend_gift/FriendGiftViewModel.dart';
 import 'package:provider/provider.dart';
 
 import '../../../constants/AppColors.dart';
 import '../../../core/di/Injection.dart';
+import '../../../main.dart';
 import 'GiftItem.dart';
 
 class FriendGiftScreen extends StatelessWidget {
@@ -28,13 +30,54 @@ class FriendGiftScreen extends StatelessWidget {
                 itemCount: viewModel.gifts.length,
                 itemBuilder: (context, index) {
                   return GiftItem(viewModel.gifts[index], () {
-                    print('send again ==> $index');
+                    _showPaymentMethodDialog(index);
                   });
                 }
             );
           },
         ),
       ),
+    );
+  }
+
+  _showPaymentMethodDialog(int index) {
+    showDialog(
+        context: appRouter.root.navigatorKey.currentContext!,
+        builder: (context) {
+          return Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10)
+            ),
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  20.toVerticalSizedBox,
+                  'Paypal'.toTextButton(() {
+                    appRouter.pop();
+                    _viewModel.sendGift(index);
+                  }, width: double.infinity),
+
+                  'Credit card'.toTextButton(() {
+                    appRouter.pop();
+                    _viewModel.sendGift(index);
+                  }, width: double.infinity),
+
+                  'Mobile Money'.toTextButton(() {
+                    appRouter.pop();
+                    _viewModel.sendGift(index);
+                  }, width: double.infinity),
+                  'Crypto'.toTextButton(() {
+                    appRouter.pop();
+                    _viewModel.sendGift(index);
+                  }, width: double.infinity),
+                  20.toVerticalSizedBox,
+                ],
+              ),
+            ),
+          );
+        }
     );
   }
 }

@@ -20,7 +20,7 @@ class CustomerNotiScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        appRouter.pop(_viewModel.notifications);
+        Navigator.pop(context, _viewModel.notifications);
         return Future.value(false);
       },
       child: Scaffold(

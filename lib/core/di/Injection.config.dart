@@ -96,8 +96,10 @@ Future<_i1.GetIt> $initGetIt(
       () => _i22.ContactListInteractor(get<_i6.GiftRepo>()));
   gh.factory<_i23.ContactListViewModel>(
       () => _i23.ContactListViewModel(get<_i22.ContactListInteractor>()));
-  gh.factory<_i24.CustomerMainInteractor>(
-      () => _i24.CustomerMainInteractor(get<_i11.NotiRepo>()));
+  gh.factory<_i24.CustomerMainInteractor>(() => _i24.CustomerMainInteractor(
+        get<_i11.NotiRepo>(),
+        get<_i4.AuthRepo>(),
+      ));
   gh.factory<_i25.CustomerMainViewModel>(
       () => _i25.CustomerMainViewModel(get<_i24.CustomerMainInteractor>()));
   gh.factory<_i26.CustomerNotiInteractor>(
@@ -124,8 +126,10 @@ Future<_i1.GetIt> $initGetIt(
       ));
   gh.factory<_i36.ProfileInteractor>(
       () => _i36.ProfileInteractor(get<_i16.ProfileRepo>()));
-  gh.factory<_i37.ProfileViewModel>(
-      () => _i37.ProfileViewModel(get<_i36.ProfileInteractor>()));
+  gh.factory<_i37.ProfileViewModel>(() => _i37.ProfileViewModel(
+        get<_i36.ProfileInteractor>(),
+        get<_i32.ISessionHelper>(),
+      ));
   gh.factory<_i38.WelcomeViewModel>(
       () => _i38.WelcomeViewModel(get<_i32.ISessionHelper>()));
   return get;

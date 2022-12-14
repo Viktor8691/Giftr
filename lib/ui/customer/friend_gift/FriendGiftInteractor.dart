@@ -13,7 +13,14 @@ class FriendGiftInteractor extends Interactor {
   FriendGiftInteractor(this._giftRepo);
 
   Future<SendGiftRes?> sendGift(SendGiftReq request) async {
-
+    showLoading();
+    final response = await _giftRepo.sendGift(request);
+    hideLoading();
+    return response.fold((l) {
+      return null;
+    }, (r) {
+      return SendGiftRes.fromJson(r.data);
+    });
   }
 
   Future<List<Gift>> getSentGifts(GetSentGiftReq request) async {
