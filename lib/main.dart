@@ -14,17 +14,13 @@ import 'core/firebase/FirebaseService.dart';
 import 'core/routes/Route.gr.dart';
 
 final appRouter = MyRouter();
-@pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  print("Handling a background message: ${message.messageId}");
-}
-
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection();
+
   await Firebase.initializeApp();
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+
   runApp(MyApp());
 }
 

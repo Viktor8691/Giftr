@@ -3,12 +3,14 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:giftr/base/Interactor.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:giftr/constants/AppConstants.dart';
-import 'package:giftr/core/data/network/module/auth/UpdateTokenReq.dart';
-import 'package:giftr/core/data/network/repository/AuthRepo.dart';
-import 'package:giftr/extension/StringExtension.dart';
 import 'package:giftr/utils/Utils.dart';
-import 'package:injectable/injectable.dart';
+
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print("Handling a background message: ${message.messageId}");
+}
+
 
 class FirebaseService extends Interactor{
 
@@ -21,17 +23,44 @@ class FirebaseService extends Interactor{
   }
 
   void init(){
-    print('aaaa ===> setup notification');
     setupFlutterNotifications();
   }
 
   Future<void> setupFlutterNotifications() async {
-    FirebaseMessaging.onMessage.listen((RemoteMessage event) {
-      print("aaaa ===> message recieved");
-      print(event.notification!.body);
-    });
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {
-      print('Message clicked!');
+    if (isFlutterLocalNotificationsInitialized) {
+      return;
+    }
+    channel = const AndroidNotificationChannel(
+      'high_importance_channel', // id
+      'High Importance Notifications', // title
+      description:
+      'This channel is used for important notifications.', // description
+      importance: Importance.high,
+    );
+
+    flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+
+    /// Create an Android Notification Channel.
+    ///
+    /// We use this channel in the `AndroidManifest.xml` file to override the
+    /// default FCM channel to enable heads up notifications.
+    await flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+        AndroidFlutterLocalNotificationsPlugin>()
+        ?.createNotificationChannel(channel);
+
+    /// Update the iOS foreground notification presentation options to allow
+    /// heads up notifications.
+    await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+      alert: true,
+      badge: true,
+      sound: true,
+    );
+    isFlutterLocalNotificationsInitialized = true;
+
+    FirebaseMessaging.onMessage.listen(_showFlutterNotification);
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('A new onMessageOpenedApp event was published!');
     });
   }
 

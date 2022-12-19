@@ -26,6 +26,7 @@ class CustomerMainViewModel extends BaseViewModel {
     updateToken();
   }
 
+
   void getCustomerNotifications() async{
     final request = GetCustomerNotiReq(appUser!.phone_no);
     final response = await _interactor.getCustomerNotifications(request);
