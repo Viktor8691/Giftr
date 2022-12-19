@@ -1,8 +1,10 @@
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:giftr/base/Interactor.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:giftr/constants/AppConstants.dart';
 import 'package:giftr/utils/Utils.dart';
 
 @pragma('vm:entry-point')
@@ -40,17 +42,11 @@ class FirebaseService extends Interactor{
 
     flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
-    /// Create an Android Notification Channel.
-    ///
-    /// We use this channel in the `AndroidManifest.xml` file to override the
-    /// default FCM channel to enable heads up notifications.
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
         AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
 
-    /// Update the iOS foreground notification presentation options to allow
-    /// heads up notifications.
     await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
       alert: true,
       badge: true,
@@ -65,6 +61,9 @@ class FirebaseService extends Interactor{
   }
 
   void _showFlutterNotification(RemoteMessage message) {
+
+    FBroadcast.instance().broadcast(SHOW_NOTI_BADGE);
+
     RemoteNotification? notification = message.notification;
     AndroidNotification? android = message.notification?.android;
     if (notification != null && android != null && !kIsWeb) {
@@ -77,8 +76,6 @@ class FirebaseService extends Interactor{
             channel.id,
             channel.name,
             channelDescription: channel.description,
-            // TODO add a proper drawable resource to android, for now using
-            //      one that already exists in example app.
             icon: 'launch_background',
           ),
         ),

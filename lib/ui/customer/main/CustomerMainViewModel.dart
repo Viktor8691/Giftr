@@ -1,3 +1,4 @@
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:giftr/base/BaseViewModel.dart';
 import 'package:giftr/constants/AppConstants.dart';
@@ -24,10 +25,15 @@ class CustomerMainViewModel extends BaseViewModel {
   void init() {
     getCustomerNotifications();
     updateToken();
+
+    FBroadcast.instance().register(SHOW_NOTI_BADGE, (value, callback) {
+      getCustomerNotifications();
+    });
   }
 
 
   void getCustomerNotifications() async{
+    notifications.clear();
     final request = GetCustomerNotiReq(appUser!.phone_no);
     final response = await _interactor.getCustomerNotifications(request);
     notifications.addAll(response);

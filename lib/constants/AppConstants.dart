@@ -12,6 +12,7 @@ final String PREF_SESSION = 'Session';
 final String DIVIDE_CHARACTER = '::==::';
 final String CUSTOMER = '1';
 final String MERCHANT = '2';
+const String SHOW_NOTI_BADGE = "showNotiBadge";
 
 User? appUser;
 

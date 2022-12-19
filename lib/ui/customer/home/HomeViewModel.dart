@@ -1,6 +1,7 @@
 import 'package:giftr/base/BaseViewModel.dart';
 import 'package:giftr/core/data/network/module/customer/product/GetProductReq.dart';
 import 'package:injectable/injectable.dart';
+import 'package:kt_dart/collection.dart';
 
 import '../../../core/data/network/module/customer/product/GetProductRes.dart';
 import '../../../core/data/network/module/notification/GetCustomerNotiRes.dart';
@@ -36,9 +37,9 @@ class HomeViewModel extends BaseViewModel {
     notifyListeners();
   }
 
-  void reloadNotifications(List<Notification> data){
-    notifications.clear();
-    notifications.addAll(data);
+  void reloadNotifications(List<Notification> data) {
+    notifications = data;
+    print("aaaa ===> ${data}");
     notifyListeners();
   }
 }

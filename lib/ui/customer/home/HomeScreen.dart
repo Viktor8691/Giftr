@@ -1,4 +1,5 @@
 import 'package:badges/badges.dart';
+import 'package:fbroadcast/fbroadcast.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:giftr/constants/AppColors.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:giftr/main.dart';
 import 'package:provider/provider.dart';
 
+import '../../../constants/AppConstants.dart';
 import '../../../core/data/network/module/notification/GetCustomerNotiRes.dart' as noti;
 import '../../../core/routes/Route.gr.dart';
 import 'HomeViewModel.dart';
@@ -30,10 +32,10 @@ class HomeScreen extends StatelessWidget {
               actions: [
                 IconButton(onPressed: () {
                   appRouter.push(CustomerNotiScreenRoute(data: viewModel.notifications)).then((value) {
-                    final notifications = value as List<noti.Notification>;
-                    print('aaaa ===> ${notifications.length}');
-                    if (notifications.isNotEmpty){
-                      viewModel.reloadNotifications(notifications);
+                    final data = value as List<noti.Notification>;
+                    if (data != null){
+                      FBroadcast.instance().broadcast(SHOW_NOTI_BADGE);
+                      viewModel.reloadNotifications(data);
                     }
                   });
                 }, icon: Badge(

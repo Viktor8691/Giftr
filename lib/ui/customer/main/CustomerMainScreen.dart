@@ -28,8 +28,8 @@ class _CustomerMainScreenState extends State<CustomerMainScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
-      child: ChangeNotifierProvider(
-        create: (_) => _viewModel,
+      child: ChangeNotifierProvider.value(
+        value: _viewModel,
         child: Consumer<CustomerMainViewModel>(
           builder: (context, viewModel, _) {
             if (viewModel.notifications.isNotEmpty) {_homeScreen.viewModel.showNotificationBadge(viewModel.notifications);}
